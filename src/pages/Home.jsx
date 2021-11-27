@@ -1,5 +1,4 @@
 import React, { Component, useState, useEffect } from "react";
-import http from "../http-common";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -7,10 +6,10 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import axios from "./../http-common";
 import { deleteProducts, getProducts } from "../services/productService";
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
+import { Container } from "@material-ui/core";
 
 function Home() {
   const [products, setproducts] = useState([]);
@@ -36,17 +35,18 @@ function Home() {
   };
 
   return (
-    <>
+    <Container>
+      <h3>React CRUD Example</h3>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
               <TableCell>Product Name</TableCell>
-              <TableCell align="right">Category</TableCell>
-              <TableCell align="right">Cost Price</TableCell>
-              <TableCell align="right">Sale Price</TableCell>
-              <TableCell align="right">Discount</TableCell>
-              <TableCell align="right">Actions</TableCell>
+              <TableCell>Category</TableCell>
+              <TableCell>Cost Price</TableCell>
+              <TableCell>Sale Price</TableCell>
+              <TableCell>Discount</TableCell>
+              <TableCell>Actions</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -58,11 +58,11 @@ function Home() {
                 <TableCell component="th" scope="row">
                   {product.name}
                 </TableCell>
-                <TableCell align="right">{product.productCategory}</TableCell>
-                <TableCell align="right">{product.costPrice}</TableCell>
-                <TableCell align="right">{product.salePrice}</TableCell>
-                <TableCell align="right">{product.discount}</TableCell>
-                <TableCell align="right">
+                <TableCell>{product.productCategory}</TableCell>
+                <TableCell>{product.costPrice}</TableCell>
+                <TableCell>{product.salePrice}</TableCell>
+                <TableCell>{product.discount}</TableCell>
+                <TableCell>
                   <Stack direction="row" spacing={1}>
                     <Chip
                       label="Edit"
@@ -83,7 +83,7 @@ function Home() {
           </TableBody>
         </Table>
       </TableContainer>
-    </>
+    </Container>
   );
 }
 

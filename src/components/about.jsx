@@ -1,8 +1,10 @@
 import React, { Component, useState } from "react";
 // import AboutChild from "./aboutChild";
-import AboutChild from "./aboutsfolder/aboutChild";
+import AboutChild from "./aboutChild";
 
 function About() {
+  // States
+
   const [count, setcount] = useState(0);
   const [name, setname] = useState("Shoaib Ali");
 
@@ -181,7 +183,7 @@ function About() {
   const sum = () => {
     console.log("Sum is called");
   };
-  //Arrow Function
+  // Arrow Function
   const incCount = () => {
     setcount(count + 1);
     const jobs = [
