@@ -10,8 +10,8 @@ function App() {
     <>
       {/* <Link to="/contact">Contact Us Link</Link> */}
       <BrowserRouter>
-        <Link to="/contact">Contact Us Link</Link>
-        <Link to="/about">About Us Link</Link>
+        {/* <Link to="/contact">Contact Us Link</Link>
+        <Link to="/about">About Us Link</Link> */}
 
         <Switch>
           <Route path="/" exact>
