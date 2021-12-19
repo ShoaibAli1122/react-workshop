@@ -44,7 +44,7 @@ function Home() {
 
   return (
     <Container>
-      <h3>React CRUD</h3>
+      <h3>React CRUD Example</h3>
       <Button variant="contained" style={{ float: "right" }}>
         <Link style={{ color: "white", textDecoration: "none" }} to="/about">
           Add Product
