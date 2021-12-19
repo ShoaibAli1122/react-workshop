@@ -5,15 +5,19 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
 import { deleteProducts, getProducts } from "../services/productService";
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
 import { Container } from "@material-ui/core";
+import Paper from "@mui/material/Paper";
+import Button from "@mui/material/Button";
+import { Link } from "react-router-dom";
+import DeleteProductConfirmation from "../components/productModule/deleteProductComponent";
 
 function Home() {
   const [products, setproducts] = useState([]);
-
+  const [openState, setopenState] = useState(false);
+  const [producttoDelete, setproducttoDelete] = useState("");
   useEffect(async () => {
     const res = await getProducts();
     setproducts(res.data);
@@ -21,22 +25,32 @@ function Home() {
     console.log("resp", res);
   }, []);
 
-  const handleDelete = (id) => {
-    console.info("You clicked the Chip.", id);
-
+  const handleDeleteConfirmation = (id) => {
+    setopenState(true);
+    setproducttoDelete(id);
+  };
+  const handleDelete = async () => {
+    console.info("You clicked the Chip.", producttoDelete);
+    setopenState(false);
     const newproducts = products.filter((product) => {
-      return product._id != id;
+      return product._id != producttoDelete;
     });
     setproducts(newproducts);
     console.log(newproducts);
 
-    const res = deleteProducts(id);
+    const res = await deleteProducts(producttoDelete);
     console.log("res", res);
   };
 
   return (
     <Container>
-      <h3>React CRUD Example</h3>
+      <h3>React CRUD</h3>
+      <Button variant="contained" style={{ float: "right" }}>
+        <Link style={{ color: "white", textDecoration: "none" }} to="/about">
+          Add Product
+        </Link>
+      </Button>
+
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
@@ -74,7 +88,9 @@ function Home() {
                       label="Delete"
                       color="error"
                       variant="outlined"
-                      onClick={() => handleDelete(product._id)}
+                      onClick={() => handleDeleteConfirmation(product._id)}
+                      // onClick={() => handleDelete(product._id)}
+                      // onClick={}
                     />
                   </Stack>
                 </TableCell>
@@ -83,6 +99,18 @@ function Home() {
           </TableBody>
         </Table>
       </TableContainer>
+      {/* <DeleteProductConfirmation
+        open={openState}
+        productId={producttoDelete}
+        deleteProduct={handleDelete}
+        setOpen={setopenState}
+      /> */}
+
+      <DeleteProductConfirmation
+        open={openState}
+        setOpen={setopenState}
+        deleteProduct={handleDelete}
+      />
     </Container>
   );
 }
