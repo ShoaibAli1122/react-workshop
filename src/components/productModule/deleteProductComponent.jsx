@@ -19,9 +19,9 @@ function DeleteProductComponent(props) {
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
+      {/* <Button variant="outlined" onClick={handleClickOpen}>
         Open alert dialog
-      </Button>
+      </Button> */}
       <Dialog
         open={props.open}
         onClose={handleClose}

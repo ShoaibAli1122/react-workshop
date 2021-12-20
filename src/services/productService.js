@@ -5,10 +5,12 @@ export const getProducts = () => {
     return res
 }
 
-// export const saveProducts = () => {
-//     const { data } = http.post('/products')
-//     return data
-// }
+export const saveProducts = (product) => {
+    console.log("product", product)
+    const res = http.post('/products', product)
+    console.log("data", res)
+    return res
+}
 
 export const deleteProducts = (id) => {
     console.log(id)

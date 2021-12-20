@@ -2,6 +2,7 @@ import './App.css';
 import { BrowserRouter, Route, Redirect, Link, Switch } from 'react-router-dom';
 import About from './pages/About';
 import Home from './pages/Home';
+import AddProductForm from './components/productModule/addProductForm';
 function App() {
 
   return (
@@ -17,8 +18,16 @@ function App() {
             <Home />
           </Route>
 
-          <Route path="/about">
+          {/* <Route path="/about">
             <About />
+          </Route> */}
+
+          <Route path="/about/:abcd">
+            <About />
+          </Route>
+
+          <Route path="/addProduct">
+            <AddProductForm />
           </Route>
 
           <Redirect to="/" />

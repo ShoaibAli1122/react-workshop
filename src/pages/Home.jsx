@@ -16,6 +16,7 @@ import DeleteProductConfirmation from "../components/productModule/deleteProduct
 
 function Home() {
   const [products, setproducts] = useState([]);
+  // Managing State in higher order Component
   const [openState, setopenState] = useState(false);
   const [producttoDelete, setproducttoDelete] = useState("");
   useEffect(async () => {
@@ -29,12 +30,18 @@ function Home() {
     setopenState(true);
     setproducttoDelete(id);
   };
+
   const handleDelete = async () => {
     console.info("You clicked the Chip.", producttoDelete);
     setopenState(false);
+    // 1 2
+    // [1,2]
+    // 3!=3
+    // [1,2]
     const newproducts = products.filter((product) => {
       return product._id != producttoDelete;
     });
+
     setproducts(newproducts);
     console.log(newproducts);
 
@@ -46,7 +53,10 @@ function Home() {
     <Container>
       <h3>React CRUD Example</h3>
       <Button variant="contained" style={{ float: "right" }}>
-        <Link style={{ color: "white", textDecoration: "none" }} to="/about">
+        <Link
+          style={{ color: "white", textDecoration: "none" }}
+          to="/addProduct"
+        >
           Add Product
         </Link>
       </Button>
@@ -90,7 +100,6 @@ function Home() {
                       variant="outlined"
                       onClick={() => handleDeleteConfirmation(product._id)}
                       // onClick={() => handleDelete(product._id)}
-                      // onClick={}
                     />
                   </Stack>
                 </TableCell>
